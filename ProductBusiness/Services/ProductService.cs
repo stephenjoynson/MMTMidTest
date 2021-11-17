@@ -3,6 +3,7 @@ using ProductData.Interfaces;
 using ProductData.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProductBusiness.Services
 {
@@ -28,16 +29,17 @@ namespace ProductBusiness.Services
         public IEnumerable<Product> GetAllProducts()
         {
             var products = _productRepository.GetAllProducts();
-            foreach(var product in products)
+            var allProducts = products as Product[] ?? products.ToArray();
+            foreach(var product in allProducts)
             {
                 product.ManufacturerName = _manufacturerRepository.GetManufacturerById(product.ManufacturerId)?.Name;
             }
-            return products;
+            return allProducts;
         }
 
-        public Product GetProductByID(int id)
+        public Product GetProductById(int id)
         {
-            var product = _productRepository.GetProductByID(id);
+            var product = _productRepository.GetProductById(id);
             product.ManufacturerName = _manufacturerRepository.GetManufacturerById(product.ManufacturerId)?.Name;
             return product;
         }

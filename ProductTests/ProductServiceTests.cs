@@ -1,13 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProductData.Interfaces;
+using Moq;
 using ProductBusiness.Services;
+using ProductData.Interfaces;
+using ProductData.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using ProductData.Models;
 
 namespace ProductTests
 {

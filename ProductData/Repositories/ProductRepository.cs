@@ -35,7 +35,7 @@ namespace ProductData.Repositories
             collection.UpdateOne(p => p.Id == product.Id, product);
         }
 
-        public Product GetProductByID(int id)
+        public Product GetProductById(int id)
         {
             var collection = _store.GetCollection<Product>();
             return collection.AsQueryable().FirstOrDefault(p => p.Id == id);

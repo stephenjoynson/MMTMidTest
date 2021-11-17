@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,10 +7,6 @@ using ProductBusiness.Interfaces;
 using ProductBusiness.Services;
 using ProductData.Interfaces;
 using ProductData.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ProductWebsiteMVC.Validation;
 
 namespace ProductWebsiteMVC

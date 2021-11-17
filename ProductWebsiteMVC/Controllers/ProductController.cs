@@ -39,12 +39,13 @@ namespace ProductWebsiteMVC.Controllers
             try
             {
                 PopulateManufacturerDropDown(productViewModel);
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _productService.AddProduct(new Product { Name = productViewModel.Name, Description = productViewModel.Description, ManufacturerId = productViewModel.ManufacturerId });
-                    return Index();
+                    return View(productViewModel);
                 }
-                return View(productViewModel);
+
+                _productService.AddProduct(new Product { Name = productViewModel.Name, Description = productViewModel.Description, ManufacturerId = productViewModel.ManufacturerId });
+                return Index();
             }
             catch (Exception ex)
             {
@@ -52,26 +53,27 @@ namespace ProductWebsiteMVC.Controllers
                 return View(productViewModel);
             }
         }
-        public IActionResult Edit(int Id)
+        public IActionResult Edit(int id)
         {
-            var product = _productService.GetProductByID(Id);
+            var product = _productService.GetProductById(id);
             var model = new ProductViewModel { Name = product.Name, Description = product.Description, ManufacturerId = product.ManufacturerId };
             PopulateManufacturerDropDown(model);
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int Id, ProductViewModel productViewModel)
+        public IActionResult Edit(int id, ProductViewModel productViewModel)
         {
             try
             {
                 PopulateManufacturerDropDown(productViewModel);
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _productService.UpdateProduct(new Product { Id = Id,  Name = productViewModel.Name, Description = productViewModel.Description, ManufacturerId = productViewModel.ManufacturerId });
-                    return Index();
+                    return View(productViewModel);
                 }
-                return View(productViewModel);
+
+                _productService.UpdateProduct(new Product { Id = id,  Name = productViewModel.Name, Description = productViewModel.Description, ManufacturerId = productViewModel.ManufacturerId });
+                return Index();
             }
             catch (Exception ex)
             {

@@ -1,9 +1,5 @@
 using ProductData.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductBusiness.Interfaces
 {
@@ -11,7 +7,7 @@ namespace ProductBusiness.Interfaces
     {
         IEnumerable<Product> GetAllProducts();
         void AddProduct(Product product);
-        Product GetProductByID(int id);
+        Product GetProductById(int id);
         void UpdateProduct(Product product);
         bool ValidateProductNameDoesNotContainToManufacturerName(string name, int id);
     }

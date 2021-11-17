@@ -1,24 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using ProductBusiness.Interfaces;
 using ProductData.Models;
 using ProductWebsiteMVC.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ManufacturerWebsiteMVC
+namespace ProductWebsiteMVC.Controllers
 {
     public class ManufacturerController : Controller
     {
-        private IManufacturerService _ManufacturerService;
-        public ManufacturerController(IManufacturerService ManufacturerService)
+        private readonly IManufacturerService _manufacturerService;
+        public ManufacturerController(IManufacturerService manufacturerService)
         {
-            _ManufacturerService = ManufacturerService;
+            _manufacturerService = manufacturerService;
         }
         public IActionResult Index()
         {
-            var model = _ManufacturerService.GetAllManufacturers();
+            var model = _manufacturerService.GetAllManufacturers();
             return View("Index", model);
         }
         public IActionResult Create()
@@ -27,46 +24,48 @@ namespace ManufacturerWebsiteMVC
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ManufacturerViewModel ManufacturerViewModel)
+        public IActionResult Create(ManufacturerViewModel manufacturerViewModel)
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _ManufacturerService.AddManufacturer(new Manufacturer { Name = ManufacturerViewModel.Name });
-                    return Index();
+                    return View();
                 }
-                return View();
+
+                _manufacturerService.AddManufacturer(new Manufacturer { Name = manufacturerViewModel.Name });
+                return Index();
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                return View(ManufacturerViewModel);
+                return View(manufacturerViewModel);
             }
         }
-        public IActionResult Edit(int Id)
+        public IActionResult Edit(int id)
         {
-            var Manufacturer = _ManufacturerService.GetManufacturerById(Id);
-            var model = new ManufacturerViewModel { Name = Manufacturer.Name };
+            var manufacturer = _manufacturerService.GetManufacturerById(id);
+            var model = new ManufacturerViewModel { Name = manufacturer.Name };
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int Id, ManufacturerViewModel ManufacturerViewModel)
+        public IActionResult Edit(int id, ManufacturerViewModel manufacturerViewModel)
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _ManufacturerService.UpdateManufacturer(new Manufacturer { Id = Id, Name = ManufacturerViewModel.Name });
-                    return Index();
+                    return View();
                 }
-                return View();
+
+                _manufacturerService.UpdateManufacturer(new Manufacturer { Id = id, Name = manufacturerViewModel.Name });
+                return Index();
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                return View(ManufacturerViewModel);
+                return View(manufacturerViewModel);
             }
         }
     }
