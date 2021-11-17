@@ -30,9 +30,9 @@
     },
     {
       "id": 5,
-      "name": "Steve",
+      "name": "Steve Test 2 Test",
       "description": "Joynson",
-      "manufacturerId": 4,
+      "manufacturerId": 1,
       "manufacturerName": null
     },
     {
@@ -66,6 +66,10 @@
     {
       "id": 4,
       "name": "Steve Test 2"
+    },
+    {
+      "id": 5,
+      "name": "A New One"
     }
   ]
 }

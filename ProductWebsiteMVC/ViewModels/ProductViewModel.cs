@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ProductWebsiteMVC.Extensions;
+using ProductWebsiteMVC.Validation;
 
 namespace ProductWebsiteMVC.ViewModels
 {

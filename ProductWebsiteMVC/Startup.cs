@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProductWebsiteMVC.Validation;
 
 namespace ProductWebsiteMVC
 {
@@ -32,6 +33,7 @@ namespace ProductWebsiteMVC
             services.AddTransient<IManufacturerRepository, ManufacturerRepository>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IManufacturerService, ManufacturerService>();
+            services.AddTransient<IProductValidator, ProductValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

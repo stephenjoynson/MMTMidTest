@@ -3,16 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using ProductBusiness.Interfaces;
 using ProductWebsiteMVC.ViewModels;
 
-namespace ProductWebsiteMVC.Extensions
+namespace ProductWebsiteMVC.Validation
 {
-    public static class ProductValidator
+    public class ProductValidator : IProductValidator
     {
         private static IProductService _productService;
 
-        public static void SetProductService(IProductService productService)
+        public ProductValidator(IProductService productService)
         {
             _productService = productService;
         }
+
         public static ValidationResult ValidateProductNameDoesNotContainManufacturerName(string name, ValidationContext context)
         {
             var model = context.ObjectInstance as ProductViewModel;

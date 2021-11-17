@@ -1,25 +1,26 @@
-using Microsoft.AspNetCore.Mvc;
-using ProductBusiness.Interfaces;
-using ProductData.Models;
-using ProductWebsiteMVC.ViewModels;
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ProductWebsiteMVC.Extensions;
+using ProductBusiness.Interfaces;
+using ProductData.Models;
+using ProductWebsiteMVC.Validation;
+using ProductWebsiteMVC.ViewModels;
 
-namespace ProductWebsiteMVC
+namespace ProductWebsiteMVC.Controllers
 {
     public class ProductController : Controller
     {
         private IProductService _productService;
         private readonly IManufacturerService _manufacturerService;
 
-        public ProductController(IProductService productService, IManufacturerService manufacturerService)
+        public ProductController(IProductService productService, IManufacturerService manufacturerService, IProductValidator productValidator)
         {
             _productService = productService;
             _manufacturerService = manufacturerService;
-            ProductValidator.SetProductService(_productService);
+            _ = productValidator;
         }
+
         public IActionResult Index()
         {
             var model = _productService.GetAllProducts();
