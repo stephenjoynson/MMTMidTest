@@ -41,6 +41,13 @@
       "description": null,
       "manufacturerId": 2,
       "manufacturerName": null
+    },
+    {
+      "id": 7,
+      "name": "erer NetworkDevices.com herfe",
+      "description": null,
+      "manufacturerId": 2,
+      "manufacturerName": null
     }
   ],
   "manufacturer": [

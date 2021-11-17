@@ -47,9 +47,9 @@ namespace ProductBusiness.Services
             _productRepository.UpdateProduct(product);
         }
 
-        public bool ValidateProductNameNotEqualToManufacturerName(string name, int id)
+        public bool ValidateProductNameDoesNotContainToManufacturerName(string name, int id)
         {
-            return string.Compare(name, _manufacturerRepository.GetManufacturerById(id).Name, StringComparison.InvariantCultureIgnoreCase) > 0;
+            return !name.Contains( _manufacturerRepository.GetManufacturerById(id).Name, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

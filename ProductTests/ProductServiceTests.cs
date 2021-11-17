@@ -64,7 +64,7 @@ namespace ProductTests
 
             var productService = new ProductService(_mockRepo.Object, mockManufacturerRepository.Object);
 
-            var result = productService.ValidateProductNameNotEqualToManufacturerName("Four", 4);
+            var result = productService.ValidateProductNameDoesNotContainToManufacturerName("Four", 4);
             
             Assert.IsTrue(result);
         }
@@ -78,7 +78,7 @@ namespace ProductTests
 
             var productService = new ProductService(_mockRepo.Object, mockManufacturerRepository.Object);
 
-            var result = productService.ValidateProductNameNotEqualToManufacturerName("Four", 4);
+            var result = productService.ValidateProductNameDoesNotContainToManufacturerName("Four", 4);
 
             Assert.IsFalse(result);
         }

@@ -13,14 +13,14 @@ namespace ProductWebsiteMVC.Extensions
         {
             _productService = productService;
         }
-        public static ValidationResult ValidateProductNameDoesNotEqualManufacturerName(string name, ValidationContext context)
+        public static ValidationResult ValidateProductNameDoesNotContainManufacturerName(string name, ValidationContext context)
         {
             var model = context.ObjectInstance as ProductViewModel;
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
-            return _productService.ValidateProductNameNotEqualToManufacturerName(name, model.ManufacturerId) ? ValidationResult.Success : new ValidationResult("Product Name must not be the same as the Manufacturer Name");
+            return _productService.ValidateProductNameDoesNotContainToManufacturerName(name, model.ManufacturerId) ? ValidationResult.Success : new ValidationResult("Product Name must not contain the Manufacturer Name");
         }
     }
 }

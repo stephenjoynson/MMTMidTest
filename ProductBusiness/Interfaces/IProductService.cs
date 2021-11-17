@@ -13,6 +13,6 @@ namespace ProductBusiness.Interfaces
         void AddProduct(Product product);
         Product GetProductByID(int id);
         void UpdateProduct(Product product);
-        bool ValidateProductNameNotEqualToManufacturerName(string name, int id);
+        bool ValidateProductNameDoesNotContainToManufacturerName(string name, int id);
     }
 }
